@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estatly &mdash; Find a place you will love to come home to</title>
+<meta name="description" content="Demo real estate website built with HTML, CSS and JavaScript. Browse verified apartments, villas and plots across India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="home">
+
+<!-- ============ ICON SPRITE (defined once, reused with <use>) ============ -->
+<svg hidden aria-hidden="true">
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.4-3 8.3-7 9-4-0.7-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4L12 22l-9-9V4h9l8.6 8.6a1.9 1.9 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9M17 17l2-2M15 15l2-2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.6 7.1L4 21l1.9-5.4A8 8 0 1121 12z"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18v-8h18v8M3 14h18M6 10V7h5v3"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 014 0"/></symbol>
+  <symbol id="i-area" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M9 4v5H4M15 20v-5h5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M21 16.9v2.6a1.5 1.5 0 01-1.7 1.5A18 18 0 013 4.7 1.5 1.5 0 014.5 3h2.6a1.5 1.5 0 011.5 1.3c.1.9.3 1.8.6 2.6a1.5 1.5 0 01-.3 1.6L7.8 9.6a14 14 0 006.6 6.6l1.1-1.1a1.5 1.5 0 011.6-.3c.8.3 1.7.5 2.6.6A1.5 1.5 0 0121 16.9z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 6l8 6 8-6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#home">
+      <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+      <span class="brand-name">Estatly</span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#home">Home</a>
+      <a href="#properties">Properties</a>
+      <a href="#why">Why Us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-sm nav-cta" href="#contact">Book a Visit</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-blob blob-a" aria-hidden="true"></div>
+  <div class="hero-blob blob-b" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <p class="eyebrow fade-up">Trusted since 2011</p>
+    <h1 class="hero-title fade-up delay-1">
+      Find a place you will<br>
+      <span class="accent">love to come home to</span>
+    </h1>
+    <p class="hero-sub fade-up delay-2">
+      Hand picked apartments, villas and plots across 5 major cities &mdash;
+      every listing visited and verified by our own team.
+    </p>
+
+    <form class="search-card fade-up delay-3">
+      <div class="field">
+        <label for="city">City</label>
+        <select id="city" name="city">
+          <option>Bengaluru</option>
+          <option>Mumbai</option>
+          <option>Pune</option>
+          <option>Hyderabad</option>
+          <option>Delhi NCR</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="type">Property Type</label>
+        <select id="type" name="type">
+          <option>Apartment</option>
+          <option>Villa</option>
+          <option>Independent House</option>
+          <option>Plot</option>
+          <option>Office Space</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="budget">Budget</label>
+        <select id="budget" name="budget">
+          <option>Under 50 L</option>
+          <option>50 L - 1 Cr</option>
+          <option>1 Cr - 2 Cr</option>
+          <option>Above 2 Cr</option>
+        </select>
+      </div>
+      <button class="btn btn-search" type="submit">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>Search</span>
+      </button>
+    </form>
+
+    <ul class="hero-chips fade-up delay-4">
+      <li>No brokerage on new projects</li>
+      <li>Free site visits</li>
+      <li>Home loan assistance</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal">
+      <div class="stat-value"><span class="counter" data-target="1250">0</span>+</div>
+      <div class="stat-label">Properties Listed</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-value"><span class="counter" data-target="890">0</span>+</div>
+      <div class="stat-label">Happy Families</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-value"><span class="counter" data-target="42">0</span></div>
+      <div class="stat-label">Cities Covered</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-value"><span class="counter" data-target="15">0</span>+</div>
+      <div class="stat-label">Years of Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROPERTIES ================= -->
+<section class="section" id="properties">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Featured listings</p>
+        <h2>Homes people are asking about this week</h2>
+      </div>
+      <a class="link-arrow" href="#contact">View all properties <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="cards">
+
+      <article class="card reveal" style="--d: 0ms">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=70" alt="Skyline Residences" loading="lazy">
+          <span class="badge">Featured</span>
+          <span class="card-price">&#8377; 1.85 Cr</span>
+        </div>
+        <div class="card-body">
+          <h3>Skyline Residences</h3>
+          <p class="card-loc"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Indiranagar, Bengaluru</p>
+          <ul class="card-meta">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bed"/></svg>3 Beds</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bath"/></svg>3 Baths</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-area"/></svg>1,680 sqft</li>
+          </ul>
+          <div class="card-foot">
+            <span class="card-type">Apartment</span>
+            <a class="link-arrow sm" href="#contact">Enquire <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d: 80ms">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=70" alt="Palm Court Villa" loading="lazy">
+          <span class="badge">New</span>
+          <span class="card-price">&#8377; 3.40 Cr</span>
+        </div>
+        <div class="card-body">
+          <h3>Palm Court Villa</h3>
+          <p class="card-loc"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Whitefield, Bengaluru</p>
+          <ul class="card-meta">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bed"/></svg>4 Beds</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bath"/></svg>5 Baths</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-area"/></svg>3,200 sqft</li>
+          </ul>
+          <div class="card-foot">
+            <span class="card-type">Villa</span>
+            <a class="link-arrow sm" href="#contact">Enquire <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d: 160ms">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=900&q=70" alt="Green Meadow Homes" loading="lazy">
+          <span class="badge">Hot Deal</span>
+          <span class="card-price">&#8377; 95 L</span>
+        </div>
+        <div class="card-body">
+          <h3>Green Meadow Homes</h3>
+          <p class="card-loc"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Baner, Pune</p>
+          <ul class="card-meta">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bed"/></svg>2 Beds</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bath"/></svg>2 Baths</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-area"/></svg>1,120 sqft</li>
+          </ul>
+          <div class="card-foot">
+            <span class="card-type">Apartment</span>
+            <a class="link-arrow sm" href="#contact">Enquire <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d: 240ms">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=70" alt="Marine Bay Heights" loading="lazy">
+          <span class="badge">Premium</span>
+          <span class="card-price">&#8377; 5.60 Cr</span>
+        </div>
+        <div class="card-body">
+          <h3>Marine Bay Heights</h3>
+          <p class="card-loc"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Worli, Mumbai</p>
+          <ul class="card-meta">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bed"/></svg>4 Beds</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bath"/></svg>4 Baths</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-area"/></svg>2,850 sqft</li>
+          </ul>
+          <div class="card-foot">
+            <span class="card-type">Apartment</span>
+            <a class="link-arrow sm" href="#contact">Enquire <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d: 320ms">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&q=70" alt="Lakeview Terrace" loading="lazy">
+          <span class="badge">Featured</span>
+          <span class="card-price">&#8377; 1.20 Cr</span>
+        </div>
+        <div class="card-body">
+          <h3>Lakeview Terrace</h3>
+          <p class="card-loc"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Gachibowli, Hyderabad</p>
+          <ul class="card-meta">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bed"/></svg>3 Beds</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bath"/></svg>2 Baths</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-area"/></svg>1,450 sqft</li>
+          </ul>
+          <div class="card-foot">
+            <span class="card-type">Independent House</span>
+            <a class="link-arrow sm" href="#contact">Enquire <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d: 400ms">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=70" alt="The Orchid Enclave" loading="lazy">
+          <span class="badge">New</span>
+          <span class="card-price">&#8377; 78 L</span>
+        </div>
+        <div class="card-body">
+          <h3>The Orchid Enclave</h3>
+          <p class="card-loc"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Sector 62, Noida</p>
+          <ul class="card-meta">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bed"/></svg>2 Beds</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bath"/></svg>2 Baths</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-area"/></svg>980 sqft</li>
+          </ul>
+          <div class="card-foot">
+            <span class="card-type">Apartment</span>
+            <a class="link-arrow sm" href="#contact">Enquire <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section class="section section-alt" id="why">
+  <div class="wrap why-grid">
+    <div class="why-intro reveal">
+      <p class="eyebrow">Why Estatly</p>
+      <h2>Buying a home is stressful enough. The search should not be.</h2>
+      <p class="muted">
+        We keep the list short and the information honest. If a property is not right
+        for you, we will say so &mdash; even if it costs us the sale.
+      </p>
+      <a class="btn" href="#contact">Talk to an advisor <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="why-list">
+      <div class="feature reveal" style="--d: 0ms">
+        <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+        <div>
+          <h3>Verified Listings</h3>
+          <p class="muted">Every property is visited and documented by our team before it goes live.</p>
+        </div>
+      </div>
+      <div class="feature reveal" style="--d: 90ms">
+        <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span>
+        <div>
+          <h3>Honest Pricing</h3>
+          <p class="muted">No hidden brokerage. You see the same number the seller quoted us.</p>
+        </div>
+      </div>
+      <div class="feature reveal" style="--d: 180ms">
+        <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg></span>
+        <div>
+          <h3>End to End Support</h3>
+          <p class="muted">Site visits, paperwork, registration and home loan help under one roof.</p>
+        </div>
+      </div>
+      <div class="feature reveal" style="--d: 270ms">
+        <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
+        <div>
+          <h3>Dedicated Advisor</h3>
+          <p class="muted">One person stays with you from the first call to the handover of keys.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div>
+        <p class="eyebrow">Reviews</p>
+        <h2>What our clients say</h2>
+      </div>
+    </div>
+
+    <div class="quotes">
+
+      <figure class="quote reveal" style="--d: 0ms">
+        <div class="stars" aria-label="5 out of 5">
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+        </div>
+        <blockquote>They shortlisted six homes that actually matched my budget instead of showing me everything on the market. Closed in three weeks.</blockquote>
+        <figcaption>
+          <span class="avatar">R</span>
+          <span>
+            <strong>Ritika Sharma</strong>
+            <small>Bought a 3 BHK in Bengaluru</small>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal" style="--d: 100ms">
+        <div class="stars" aria-label="5 out of 5">
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+        </div>
+        <blockquote>The listing photos and the walkthrough video made a real difference. I had three serious buyers in the first ten days.</blockquote>
+        <figcaption>
+          <span class="avatar">A</span>
+          <span>
+            <strong>Arjun Mehta</strong>
+            <small>Sold a villa in Pune</small>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal" style="--d: 200ms">
+        <div class="stars" aria-label="4 out of 5">
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span class="on"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+          <span><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+        </div>
+        <blockquote>Paperwork was the part I was dreading and it was handled completely. Clear communication throughout.</blockquote>
+        <figcaption>
+          <span class="avatar">F</span>
+          <span>
+            <strong>Fatima Noor</strong>
+            <small>Rented an office space</small>
+          </span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA / CONTACT ================= -->
+<section class="cta" id="contact">
+  <div class="wrap cta-inner reveal">
+    <div class="cta-copy">
+      <h2>Tell us what you are looking for</h2>
+      <p>Leave your number and an advisor will call you back within one working day.</p>
+      <ul class="cta-contact">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+919876543210">+91 98765 43210</a></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:hello@estatly.demo">hello@estatly.demo</a></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>2nd Floor, Brigade Road, Bengaluru 560001</span></li>
+      </ul>
+    </div>
+
+    <form class="cta-form" novalidate>
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="tel" name="phone" placeholder="Phone number" required>
+      <select name="interest">
+        <option value="">I am looking to&hellip;</option>
+        <option>Buy a home</option>
+        <option>Sell a property</option>
+        <option>Rent a space</option>
+      </select>
+      <textarea name="message" rows="3" placeholder="Anything specific? (optional)"></textarea>
+      <button class="btn btn-block" type="submit">Request a callback</button>
+      <p class="form-note">Demo form &mdash; nothing is submitted or stored.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <a class="brand" href="#home">
+        <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <span class="brand-name">Estatly</span>
+      </a>
+      <p class="muted footer-blurb">Find a place you will love to come home to.</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#home">Home</a>
+      <a href="#properties">Properties</a>
+      <a href="#why">Why Us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="wrap footer-bar">
+    <small>&copy; 2026 Estatly. Demo project &mdash; not a real agency.</small>
+    <small>Built with HTML, CSS and vanilla JavaScript.</small>
+  </div>
+</footer>
+
+<a class="to-top" href="#home" id="toTop" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
