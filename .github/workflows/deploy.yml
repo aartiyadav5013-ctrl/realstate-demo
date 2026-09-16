@@ -22,27 +22,21 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      - name: Sync files over FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # SCP over SSH. Encrypted end to end, and authenticated with a key
+      # rather than a password. Hostinger runs SSH on port 65002, not 22.
+      - name: Copy files over SSH
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-          # Explicit FTPS over port 21. If the run fails with a certificate
-          # error, change this to: ftp
-          protocol: ftps
-          port: 21
-
-          # Trailing slashes matter on both of these.
-          local-dir: ./
-          server-dir: public_html/
-
-          # This REPLACES the action's built-in excludes, so the git and
-          # node_modules entries below have to be repeated by hand.
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.DS_Store
-            README.md
+          # Only the files the site actually needs. README.md, .git and
+          # .github are simply left out rather than excluded after the fact.
+          source: "index.html,assets"
+          # This account hosts many domains; each site lives under
+          # ~/domains/<domain>/public_html. A bare "public_html" does not
+          # exist in the home directory, so the full path is required.
+          target: "domains/teal-worm-936223.hostingersite.com/public_html"
+          overwrite: true
