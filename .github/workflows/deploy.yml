@@ -1,0 +1,48 @@
+name: Deploy to Hostinger
+
+# Runs on every push to main, and can also be triggered by hand from the
+# Actions tab (Run workflow) if you ever need to force a re-upload.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# If you push twice in quick succession, let the newer run win instead of
+# having two uploads fight over the same files.
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Upload to public_html
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Sync files over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+
+          # Explicit FTPS over port 21. If the run fails with a certificate
+          # error, change this to: ftp
+          protocol: ftps
+          port: 21
+
+          # Trailing slashes matter on both of these.
+          local-dir: ./
+          server-dir: public_html/
+
+          # This REPLACES the action's built-in excludes, so the git and
+          # node_modules entries below have to be repeated by hand.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            README.md
