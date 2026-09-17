@@ -669,3 +669,125 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
   .fade-up, .reveal { opacity: 1; transform: none; }
 }
+
+/* =========================================================
+   Properties listing page (properties.html)
+   ========================================================= */
+
+/* Compact version of the home page hero -- reuses .hero-bg for the
+   same gradient wash so the two pages feel like one site. */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2rem, 4.5vw, 3.2rem) 0 clamp(1.4rem, 3vw, 2rem);
+}
+.page-hero-inner { position: relative; max-width: 720px; }
+.page-hero h1 { font-size: clamp(1.9rem, 4.2vw, 3rem); margin-bottom: .6rem; }
+.page-hero .lede { color: var(--muted); font-size: 1.02rem; margin: 0; }
+
+/* the page hero already supplies the top breathing room */
+.listings { padding-top: clamp(1.2rem, 2.5vw, 1.8rem); }
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: .9rem;
+}
+.breadcrumb a:hover { color: var(--green-700); }
+.breadcrumb .sep { opacity: .5; }
+.breadcrumb [aria-current] { color: var(--ink); font-weight: 500; }
+
+/* current page marker in the header nav */
+.nav > a[aria-current="page"] { color: var(--green-700); font-weight: 600; }
+.nav > a[aria-current="page"]::after { transform: scaleX(1); }
+
+/* ---------------- filter bar ---------------- */
+/* Deliberately not a <form>: main.js intercepts every form submit with the
+   "this is a demo" message, and these filters apply live on change. */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+  background: var(--white);
+  padding: 1.1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.btn-reset {
+  height: 46px;
+  background: var(--sand-200);
+  color: var(--ink);
+  box-shadow: none;
+}
+.btn-reset:hover { background: var(--sand-300); box-shadow: none; transform: translateY(-2px); }
+
+.results-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.8rem 0 1.4rem;
+}
+.results-count { margin: 0; color: var(--muted); font-size: .95rem; }
+.results-count strong { color: var(--ink); }
+.sort {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .9rem;
+  color: var(--muted);
+}
+.sort select {
+  font: inherit;
+  padding: .5rem .8rem;
+  border: 1px solid var(--sand-300);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--ink);
+}
+.sort select:focus {
+  outline: none;
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(47, 125, 106, .16);
+}
+
+.card.is-hidden { display: none; }
+
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 3.2rem 1.2rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.no-results.show { display: block; }
+.no-results .feature-icon { margin: 0 auto .9rem; }
+.no-results h3 { margin-bottom: .3rem; }
+.no-results p { margin: 0 0 1.2rem; }
+
+/* listing cards carry a little more detail than the home page teasers */
+.card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .9rem 0 0; }
+.card-tags li {
+  font-size: .76rem;
+  color: var(--green-700);
+  background: rgba(47, 125, 106, .1);
+  padding: .22rem .6rem;
+  border-radius: 999px;
+}
+
+/* ---------------- responsive ---------------- */
+@media (max-width: 960px) {
+  .filters { grid-template-columns: 1fr 1fr; }
+  .btn-reset { grid-column: 1 / -1; justify-content: center; }
+}
+
+@media (max-width: 760px) {
+  .filters { grid-template-columns: 1fr; }
+  .results-row { flex-direction: column; align-items: flex-start; }
+}
