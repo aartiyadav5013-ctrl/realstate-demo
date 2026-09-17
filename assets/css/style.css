@@ -692,11 +692,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: flex;
   align-items: center;
   gap: .45rem;
-  font-size: .85rem;
+  font-size: .88rem;
   color: var(--muted);
-  margin-bottom: .9rem;
+  margin-bottom: 1rem;
 }
-.breadcrumb a:hover { color: var(--green-700); }
+.breadcrumb a { color: var(--green-700); font-weight: 500; }
+.breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb .sep { opacity: .5; }
 .breadcrumb [aria-current] { color: var(--ink); font-weight: 500; }
 
