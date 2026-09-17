@@ -34,7 +34,7 @@ jobs:
 
           # Only the files the site actually needs. README.md, .git and
           # .github are simply left out rather than excluded after the fact.
-          source: "index.html,properties.html,assets"
+          source: "index.html,properties.html,about.html,assets"
           # This account hosts many domains; each site lives under
           # ~/domains/<domain>/public_html. A bare "public_html" does not
           # exist in the home directory, so the full path is required.
