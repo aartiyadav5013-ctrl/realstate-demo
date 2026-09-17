@@ -1,0 +1,30 @@
+# Estatly — clean URLs on Hostinger (LiteSpeed reads .htaccess like Apache).
+#
+# /properties.html  ->  301  ->  /properties      (address bar cleans itself up)
+# /properties       ->  serves properties.html    (internally, no redirect)
+#
+# Links inside the HTML still say "properties.html" on purpose: that keeps the
+# pages clickable when opened straight from disk, and the 301 below rewrites
+# the address bar the moment the site is served over HTTP.
+
+RewriteEngine On
+
+# /index.html (or /some/path/index.html) -> the bare directory
+RewriteCond %{THE_REQUEST} \s/+(.*)index\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# any other /page.html -> /page
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# /page/ -> /page, so the relative links and asset paths in the HTML keep
+# resolving from the site root instead of from a phantom subfolder
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# and serve /page from page.html
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# no directory listings if a folder ever lacks an index file
+Options -Indexes
